@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактор пациента</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:if="${errors}" th:text="${errors}" class="margin-bottom alert alert-danger"></div>
+    <form action="#" th:action="@{/patient/{id}(id=${id})}" th:object="${patientDTO}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Полное имя</label>
+            <input type="text" class="form-control" id="name" placeholder="Имя" th:field="${patientDTO.fullName}" required>
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Телефон</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Телефон" th:field="${patientDTO.phoneNumber}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Электронная почта</label>
+            <input type="email" class="form-control" id="email" placeholder="E-Mail" th:field="${patientDTO.email}" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/patient}">
+                Назад
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

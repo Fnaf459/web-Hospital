@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Больница</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.1.0/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            Больница
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" th:with="activeLink=${#request.requestURI}" sec:authorize="isAuthenticated()">
+                <li class="nav-item"><a sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-link" href="/doctor"
+                   th:classappend="${#strings.equals(activeLink, '/doctor')} ? 'active' : ''">Врач</a></li>
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-link" href="/patient"
+                   th:classappend="${#strings.equals(activeLink, '/patient')} ? 'active' : ''">Пациент</a>
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-link" href="/maintenance"
+                   th:classappend="${#strings.equals(activeLink, '/maintenance')} ? 'active' : ''">Услуги</a>
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-link" href="/record"
+                   th:classappend="${#strings.equals(activeLink, '/record')} ? 'active' : ''">Запись</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link" href="/swagger-ui/index.html" target="_blank">
+                    Документация REST API
+                </a>
+                <a class="nav-link" href="/logout">
+                    Выход (<span th:text="${#authentication.name}"></span>)
+                </a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="container container-padding" layout:fragment="content">
+    </div>
+</div>
+</body>
+<th:block layout:fragment="scripts">
+</th:block>
+</html>
