@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Запись</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <a class="btn btn-success button-fixed"
+           th:href="@{/record/edit/}">
+            <i class="fa-solid fa-plus"></i> Добавить
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Дата записи</th>
+                <th scope="col">Имя пациента</th>
+                <th scope="col">Название услуги</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record, iterator: ${records}">
+                <th scope="row" th:text="${iterator.index} + 1"></th>
+                <td th:text="${record.id}"></td>
+                <td th:text="${record.date}"></td>
+                <td th:text="${record.getPatientName()}"></td>
+                <td th:text="${record.getMaintenanceName()}"></td>
+                <td style="width: 10%">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-warning button-fixed button-sm"
+                           th:href="@{/record/edit/{id}(id=${record.id})}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Изменить
+                        </a>
+                        <button type="button" class="btn btn-danger button-fixed button-sm"
+                                th:attr="onclick=|confirm('Удалить запись?') && document.getElementById('remove-${record.id}').click()|">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Удалить
+                        </button>
+                    </div>
+                    <form th:action="@{/record/delete/{id}(id=${record.id})}" method="post">
+                        <button th:id="'remove-' + ${record.id}" type="submit" style="display: none">
+                            Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

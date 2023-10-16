@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактор услуги</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:text="${errors}" class="margin-bottom alert-danger"></div>
+    <form action="#" th:action="@{/maintenance/{id}(id=${id})}" th:object="${maintenanceDTO}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Название услуги</label>
+            <input type="text" class="form-control" id="name" placeholder="Название услуги" th:field="${maintenanceDTO.nameMaintenance}" required>
+        </div>
+        <div class="mb-3">
+            <label for="cost" class="form-label">Стоимость услуги</label>
+            <input type="text" class="form-control" id="cost" placeholder="Стоимость услуги" th:field="${maintenanceDTO.cost}" required>
+        </div>
+        <div class="mb-3">
+            <label for="nameDoctor" class="form-label">Полное имя врача</label>
+            <input type="text" class="form-control" id="nameDoctor" placeholder="Имя врача" th:field="${maintenanceDTO.doctorFullName}" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/maintenance}">
+                Назад
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

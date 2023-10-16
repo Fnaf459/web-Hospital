@@ -1,0 +1,85 @@
+.container-padding {
+    padding: 10px;
+}
+
+nav {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+.button-fixed {
+    min-width: 135px;
+}
+
+.button-sm {
+    padding: 1px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: rgb(128, 128, 128);
+    color: white;
+    border-radius: 2px;
+}
+.u-section-1 {
+}
+
+.u-section-1 .u-sheet-1 {
+    min-height: 800px;
+}
+
+.u-section-1 .u-text-1 {
+    font-size: 6rem;
+    background-image: none;
+    margin: 252px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+    margin: 30px 59px 60px;
+}
+
+@media (max-width: 1199px) {
+    .u-section-1 .u-text-2 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .u-section-1 .u-text-1 {
+        font-size: 3.75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .u-section-1 .u-text-1 {
+        font-size: 3rem;
+    }
+}
