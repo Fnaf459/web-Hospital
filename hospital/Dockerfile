@@ -8,7 +8,7 @@ COPY --chown=gradle:gradle . /home/gradle/project
 WORKDIR /home/gradle/project
 
 # Собираем проект с помощью Gradle
-RUN gradle clean build
+#RUN gradle clean build
 
 # Используем базовый образ с Java
 FROM gradle:8.4-jdk21
